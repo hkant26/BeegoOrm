@@ -22,7 +22,7 @@ import (
 	"go.opentelemetry.io/otel/attribute"
 	otelTrace "go.opentelemetry.io/otel/trace"
 
-	"svr/orm"
+	"github.com/hkant26/BeegoOrm/orm"
 )
 
 type (

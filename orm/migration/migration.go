@@ -34,7 +34,7 @@ import (
 	"time"
 
 	"github.com/beego/beego/v2/core/logs"
-	"svr/orm"
+	"github.com/hkant26/BeegoOrm/orm"
 )
 
 // const the data format for the bee generate migration datatype

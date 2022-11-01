@@ -17,7 +17,7 @@ package mock
 import (
 	"database/sql"
 
-	"svr/orm"
+	"github.com/hkant26/BeegoOrm/orm"
 )
 
 type DoNothingRawSetter struct{}

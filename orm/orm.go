@@ -22,7 +22,7 @@
 //
 //	import (
 //		"fmt"
-//		"svr/orm"
+//		"github.com/hkant26/BeegoOrm/orm"
 //		_ "github.com/go-sql-driver/mysql" // import your used driver
 //	)
 //
@@ -65,8 +65,8 @@ import (
 
 	"github.com/beego/beego/v2/core/logs"
 	"github.com/beego/beego/v2/core/utils"
-	"svr/orm/clauses/order_clause"
-	"svr/orm/hints"
+	"github.com/hkant26/BeegoOrm/orm/clauses/order_clause"
+	"github.com/hkant26/BeegoOrm/orm/hints"
 )
 
 // DebugQueries define the debug

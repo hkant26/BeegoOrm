@@ -17,8 +17,8 @@ package mock
 import (
 	"context"
 
-	"svr/orm"
-	"svr/orm/clauses/order_clause"
+	"github.com/hkant26/BeegoOrm/orm"
+	"github.com/hkant26/BeegoOrm/orm/clauses/order_clause"
 )
 
 // DoNothingQuerySetter do nothing

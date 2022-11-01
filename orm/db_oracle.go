@@ -19,7 +19,7 @@ import (
 	"fmt"
 	"strings"
 
-	"svr/orm/hints"
+	"github.com/hkant26/BeegoOrm/orm/hints"
 )
 
 // oracle operators.

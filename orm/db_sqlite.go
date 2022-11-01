@@ -22,7 +22,7 @@ import (
 	"strings"
 	"time"
 
-	"svr/orm/hints"
+	"github.com/hkant26/BeegoOrm/orm/hints"
 )
 
 // sqlite operators.

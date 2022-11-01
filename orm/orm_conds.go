@@ -18,7 +18,7 @@ import (
 	"fmt"
 	"strings"
 
-	"svr/orm/clauses"
+	"github.com/hkant26/BeegoOrm/orm/clauses"
 )
 
 // ExprSep define the expression separation

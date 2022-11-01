@@ -21,7 +21,7 @@ import (
 
 	_ "github.com/mattn/go-sqlite3"
 
-	"svr/orm"
+	"github.com/hkant26/BeegoOrm/orm"
 )
 
 func init() {

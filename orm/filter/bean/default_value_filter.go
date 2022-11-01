@@ -21,7 +21,7 @@ import (
 
 	"github.com/beego/beego/v2/core/bean"
 	"github.com/beego/beego/v2/core/logs"
-	"svr/orm"
+	"github.com/hkant26/BeegoOrm/orm"
 )
 
 // DefaultValueFilterChainBuilder only works for InsertXXX method,

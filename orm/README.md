@@ -45,7 +45,7 @@ package main
 
 import (
 	"fmt"
-	"svr/orm"
+	"github.com/hkant26/BeegoOrm/orm"
 	_ "github.com/go-sql-driver/mysql" // import your used driver
 )
 

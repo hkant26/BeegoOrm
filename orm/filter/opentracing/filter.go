@@ -20,7 +20,7 @@ import (
 
 	"github.com/opentracing/opentracing-go"
 
-	"svr/orm"
+	"github.com/hkant26/BeegoOrm/orm"
 )
 
 // FilterChainBuilder provides an extension point

@@ -17,7 +17,7 @@ package mock
 import (
 	"context"
 
-	"svr/orm"
+	"github.com/hkant26/BeegoOrm/orm"
 )
 
 var stub = newOrmStub()

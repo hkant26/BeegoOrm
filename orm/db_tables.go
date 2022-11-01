@@ -19,8 +19,8 @@ import (
 	"strings"
 	"time"
 
-	"svr/orm/clauses"
-	"svr/orm/clauses/order_clause"
+	"github.com/hkant26/BeegoOrm/orm/clauses"
+	"github.com/hkant26/BeegoOrm/orm/clauses/order_clause"
 )
 
 // table info struct.

@@ -21,7 +21,7 @@ import (
 	"time"
 
 	"github.com/beego/beego/v2/core/utils"
-	"svr/orm/clauses/order_clause"
+	"github.com/hkant26/BeegoOrm/orm/clauses/order_clause"
 )
 
 // TableNaming is usually used by model
