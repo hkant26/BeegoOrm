@@ -90,13 +90,13 @@ func (d *dbBaseMysql) ShowTablesQuery() string {
 // show columns sql of table for mysql.
 func (d *dbBaseMysql) ShowColumnsQuery(table string) string {
 	return fmt.Sprintf("SELECT COLUMN_NAME, COLUMN_TYPE, IS_NULLABLE FROM information_schema.columns "+
-		"WHERE table_schema = DATABASE() AND table_name = '%s'", table)
+		"WHERE table_schema = DATABASE() AND table_name = '%s'", db.Sharding(table))
 }
 
 // execute sql to check index exist.
 func (d *dbBaseMysql) IndexExists(ctx context.Context, db dbQuerier, table string, name string) bool {
 	row := db.QueryRowContext(ctx, "SELECT count(*) FROM information_schema.statistics "+
-		"WHERE table_schema = DATABASE() AND table_name = ? AND index_name = ?", table, name)
+		"WHERE table_schema = DATABASE() AND table_name = ? AND index_name = ?", db.Sharding(table), name)
 	var cnt int
 	row.Scan(&cnt)
 	return cnt > 0
@@ -156,7 +156,7 @@ func (d *dbBaseMysql) InsertOrUpdate(ctx context.Context, q dbQuerier, mi *model
 		qmarks = strings.Repeat(qmarks+"), (", multi-1) + qmarks
 	}
 	// conflitValue maybe is a int,can`t use fmt.Sprintf
-	query := fmt.Sprintf("INSERT INTO %s%s%s (%s%s%s) VALUES (%s) %s "+qupdates, Q, mi.table, Q, Q, columns, Q, qmarks, iouStr)
+	query := fmt.Sprintf("INSERT INTO %s%s%s (%s%s%s) VALUES (%s) %s "+qupdates, Q, q.Sharding(mi.table), Q, Q, columns, Q, qmarks, iouStr)
 
 	d.ins.ReplaceMarks(&query)
 

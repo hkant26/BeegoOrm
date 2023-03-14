@@ -747,7 +747,7 @@ func (d *dbBase) UpdateBatch(ctx context.Context, q dbQuerier, qs *querySet, mi 
 	var specifyIndexes string
 	if qs != nil {
 		tables.parseRelated(qs.related, qs.relDepth)
-		specifyIndexes = tables.getIndexSql(mi.table, qs.useIndex, qs.indexes)
+		specifyIndexes = tables.getIndexSql(q.Sharding(mi.table), qs.useIndex, qs.indexes)
 	}
 
 	where, args := tables.getCondSQL(cond, false, tz)
@@ -851,7 +851,7 @@ func (d *dbBase) DeleteBatch(ctx context.Context, q dbQuerier, qs *querySet, mi 
 	var specifyIndexes string
 	if qs != nil {
 		tables.parseRelated(qs.related, qs.relDepth)
-		specifyIndexes = tables.getIndexSql(mi.table, qs.useIndex, qs.indexes)
+		specifyIndexes = tables.getIndexSql(q.Sharding(mi.table), qs.useIndex, qs.indexes)
 	}
 
 	if cond == nil || cond.IsEmpty() {
@@ -1002,7 +1002,7 @@ func (d *dbBase) ReadBatch(ctx context.Context, q dbQuerier, qs *querySet, mi *m
 	orderBy := tables.getOrderSQL(qs.orders)
 	limit := tables.getLimitSQL(mi, offset, rlimit)
 	join := tables.getJoinSQL()
-	specifyIndexes := tables.getIndexSql(mi.table, qs.useIndex, qs.indexes)
+	specifyIndexes := tables.getIndexSql(q.Sharding(mi.table), qs.useIndex, qs.indexes)
 
 	for _, tbl := range tables.tables {
 		if tbl.sel {
@@ -1154,7 +1154,7 @@ func (d *dbBase) Count(ctx context.Context, q dbQuerier, qs *querySet, mi *model
 	groupBy := tables.getGroupSQL(qs.groups)
 	tables.getOrderSQL(qs.orders)
 	join := tables.getJoinSQL()
-	specifyIndexes := tables.getIndexSql(mi.table, qs.useIndex, qs.indexes)
+	specifyIndexes := tables.getIndexSql(q.Sharding(mi.table), qs.useIndex, qs.indexes)
 
 	Q := d.ins.TableQuote()
 
@@ -1683,7 +1683,7 @@ func (d *dbBase) ReadValues(ctx context.Context, q dbQuerier, qs *querySet, mi *
 	orderBy := tables.getOrderSQL(qs.orders)
 	limit := tables.getLimitSQL(mi, qs.offset, qs.limit)
 	join := tables.getJoinSQL()
-	specifyIndexes := tables.getIndexSql(mi.table, qs.useIndex, qs.indexes)
+	specifyIndexes := tables.getIndexSql(q.Sharding(mi.table), qs.useIndex, qs.indexes)
 
 	sels := strings.Join(cols, ", ")
 
@@ -1860,7 +1860,7 @@ func (d *dbBase) GetTables(db dbQuerier) (map[string]bool, error) {
 // GetColumns get all cloumns in table.
 func (d *dbBase) GetColumns(ctx context.Context, db dbQuerier, table string) (map[string][3]string, error) {
 	columns := make(map[string][3]string)
-	query := d.ins.ShowColumnsQuery(table)
+	query := d.ins.ShowColumnsQuery(db.Sharding(table))
 	rows, err := db.QueryContext(ctx, query)
 	if err != nil {
 		return columns, err
