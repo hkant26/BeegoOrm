@@ -90,7 +90,7 @@ func (d *dbBaseMysql) ShowTablesQuery() string {
 // show columns sql of table for mysql.
 func (d *dbBaseMysql) ShowColumnsQuery(table string) string {
 	return fmt.Sprintf("SELECT COLUMN_NAME, COLUMN_TYPE, IS_NULLABLE FROM information_schema.columns "+
-		"WHERE table_schema = DATABASE() AND table_name = '%s'", db.Sharding(table))
+		"WHERE table_schema = DATABASE() AND table_name = '%s'", table)
 }
 
 // execute sql to check index exist.
